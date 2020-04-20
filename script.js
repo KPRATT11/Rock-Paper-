@@ -87,7 +87,7 @@ function printResult(details) {
 
 
     //Print Computers Input
-    input
+    inputText[1].textContent = `The computer chose ${selections[details[2] - 1]}`
 
     //Print Results
     switch (result) {
