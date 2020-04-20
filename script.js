@@ -1,9 +1,9 @@
 //Create Varibles for input buttons
 const buttons = document.querySelectorAll('#input .buttons')
 
+
 //Avalible selections --This is the only place you need to change the text it will change globally--
 const selections = ['rock', 'paper', 'scissors'];
-
 
 
 //random int helper function
@@ -12,37 +12,41 @@ function randInt(min,max){
 }
 
 
+//set the title of the game to represent the selections
+const title = document.querySelector('.title h1');
+title.textContent = `${selections[0].toUpperCase()} - ${selections[1].toUpperCase()} - ${selections[2].toUpperCase()}`
+
+
 //set text of input buttons to the related text of the selections
 let butnum = 0;
 for (button of buttons ){
-    button.textContent = selections[butnum];
+    button.textContent = selections[butnum].toUpperCase();
     butnum ++;
 }
 butnum = undefined;
 
 
 function userInput() {
-let selection = null;
-//Set up event listners for user input
-//Grab the input and convert it into number for later use
-    for (button of buttons){
-        button.addEventListener('click', function() {
-            let input = this.textContent
-            input = input.toLowerCase();
+    let selection = null;
+    //Set up event listners for user input
+    //Grab the input and convert it into number for later use
+        for (button of buttons){
+            button.addEventListener('click', function() {
+                let input = this.textContent
+                input = input.toLowerCase();
 
-            //convert text selection to number
-                for (let i =0; i < selections.length; i++){
-                    if (input === selections[i])
-                        selection = i + 1;
-                }
+                //convert text selection to number
+                    for (let i =0; i < selections.length; i++){
+                        if (input === selections[i])
+                            selection = i + 1;
+                    }
 
-            //Play Game Function and Print Result
-                printResult(playGame(selection));
-            }   
-        );
-    }
+                //Play Game Function and Print Result
+                    printResult(playGame(selection));
+                }   
+            );
+        }
 }
-
 userInput()
 
 //Generate random selection for the computer
@@ -81,6 +85,8 @@ const inputText = document.querySelectorAll('.results h4')
 //[1] users input
 //[2] computers input
 function printResult(details) {
+    //Remove any IDs from the result text
+
     result = details[0]
     //Print Players Input
     inputText[0].textContent = `You chose ${selections[details[1] - 1]}`
@@ -93,17 +99,27 @@ function printResult(details) {
     switch (result) {
         case true:
             resultText.textContent = 'You Win'
+            resultText.setAttribute('id', 'positive')
             break;
 
         case false:
             resultText.textContent = 'You Loose'
+            resultText.setAttribute('id', 'negative')
             break;
 
         case null:
             resultText.textContent = 'That was a Draw'
+            resultText.setAttribute('id', 'neutral')
             break;
     }
     }
+
+
+
+
+
+
+
 
 
 /*function playGame(selection) {
