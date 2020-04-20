@@ -1,57 +1,114 @@
+//Create Varibles for input buttons
+const buttons = document.querySelectorAll('#input .buttons')
+
+//Avalible selections --This is the only place you need to change the text it will change globally--
+const selections = ['rock', 'paper', 'scissors'];
+
+
+
+//random int helper function
 function randInt(min,max){
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-const selections = ['rock', 'paper', 'scissors'];
 
-function computerPlay(selections) {
+//set text of input buttons to the related text of the selections
+let butnum = 0;
+for (button of buttons ){
+    button.textContent = selections[butnum];
+    butnum ++;
+}
+butnum = undefined;
+
+
+function userInput() {
+let selection = null;
+//Set up event listners for user input
+//Grab the input and convert it into number for later use
+    for (button of buttons){
+        button.addEventListener('click', function() {
+            let input = this.textContent
+            input = input.toLowerCase();
+
+            //convert text selection to number
+                for (let i =0; i < selections.length; i++){
+                    if (input === selections[i])
+                        selection = i + 1;
+                }
+
+            //Play Game Function and Print Result
+                printResult(playGame(selection));
+            }   
+        );
+    }
+}
+
+userInput()
+
+//Generate random selection for the computer
+function computerPlay() {
     return randInt(0,selections.length) + 1
 }
 
-function userInput(selections) {
-    let input = prompt(`Choose ${selections[0]}, ${selections[1]} or ${selections[2]}`);
-    input = input.toLowerCase();
 
-    for (let i =0; i < selections.length; i++){
-        if (input === selections[i])
-            return i + 1;
-    }
-
-    return null;
-}
-
-function calculateResults(selections) {
-    player1 = userInput(selections)
-    player2 = computerPlay(selections)
-
-    if (player1 === null){
-        console.log('Thats an Invalid input');
-        calculateResults(selections)
-    }
+function playGame(selection) {
+    player = selection
+    comp = computerPlay()
     
-    else{
-        alert(`You chose ${selections[player1 - 1]}`);
-        alert(`The computer chose ${selections[player2 - 1]}`);
-    
-
-    if (player1 == player2){
-        return null;
+    if (player == comp){
+        return [null,player,comp];
     }
-    else if (player1 - player2 === 1 || player1 - player2 === -2) {
-        return true;
+    else if (player - comp === 1 || player - comp === -2) {
+        return [true,player,comp];
     }
     else {
-        return false;
+        return [false,player,comp];
     }
     return;
     }    
-    }
     
-function playGames(amountGames) {
-    let playerScore = 0;
-    let compScore = 0;
+    
+
+//Get access to Results Elements
+const resultText = document.querySelector('.results h3');
+
+//inputText[0] refers to the top element of text while inputText[1] refers to the bottom element of text
+const inputText = document.querySelectorAll('.results h4')
+
+
+//function asks for an array of details
+//[0] wether the game is lost or won
+//[1] users input
+//[2] computers input
+function printResult(details) {
+    result = details[0]
+    //Print Players Input
+    inputText[0].textContent = `You chose ${selections[details[1] - 1]}`
+
+
+    //Print Computers Input
+    input
+
+    //Print Results
+    switch (result) {
+        case true:
+            resultText.textContent = 'You Win'
+            break;
+
+        case false:
+            resultText.textContent = 'You Loose'
+            break;
+
+        case null:
+            resultText.textContent = 'That was a Draw'
+            break;
+    }
+    }
+
+
+/*function playGame(selection) {
     for (let i =0; i < amountGames; i++){
-        switch (calculateResults(selections)) {
+        switch (calculateResults(selections, selection)) {
             case true:
                 alert('You Win');
                 playerScore += 1;
@@ -68,17 +125,17 @@ function playGames(amountGames) {
         }
     }
     if (playerScore > compScore){
-        return `Your score was ${playerScore} \nwhich is more than the computers score of ${compScore} \n
-        YOU WIN!!`
+        alert( `Your score was ${playerScore} \nwhich is more than the computers score of ${compScore} \n
+        YOU WIN!!`)
     }
     else if (playerScore < compScore) {
-        return `Your score was ${playerScore} \nwhich is less than the computers score of ${compScore} \n
-        YOU LOSE!!`
+        alert( `Your score was ${playerScore} \nwhich is less than the computers score of ${compScore} \n
+        YOU LOSE!!`)
     }
     else if (compScore === playerScore) {
-        return `Your score was ${playerScore} \nwhich is the same as the computers score \n
-        IT'S A DRAW!!`
+        alert(`Your score was ${playerScore} \nwhich is the same as the computers score \n
+        IT'S A DRAW!!`)
     }
-}
+}*/
 
-alert(playGames(5));
+//alert(playGames(5));

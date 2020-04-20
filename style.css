@@ -1,0 +1,76 @@
+body {
+    background-color: rgb(17, 17, 17);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.title {
+    margin: auto;
+    text-align: center;
+}
+
+.title h1{
+    color: white;
+    font-size: 5em;
+    font-weight: 200;
+}
+
+
+#input{
+    margin: auto;
+    text-align: center;
+}
+
+
+#input button{
+    background-color: rgb(255, 66, 66);
+    border: none;
+    padding: 1.4em 1.8em;
+    margin: 1em;
+    font-weight: bold;
+    font-size: 1.4em
+}
+
+#input button:hover{
+    background-color: rgb(219, 104, 104);
+}
+
+#input button:active{
+    background-color: rgb(104, 50, 50);
+}
+
+#input button:enabled{
+    border: none;
+    outline: none;
+}
+
+.results {
+    margin: auto;
+    margin-top: 2em;
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+.results h3 {
+    color: white;
+    font-size: 3em;
+    margin-top: 2em;
+}
+
+.results h3 #positive{
+    color: rgb(136, 224, 63);
+}
+
+.results h3 #negative{
+    color: rgb(136, 224, 63);
+}
+
+.results h4{
+    font-size: 2em;
+    text-align: center;
+    color: rgb(161, 161, 161);
+}
+
+
+
+
