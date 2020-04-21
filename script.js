@@ -1,7 +1,5 @@
 let isAvailable = true;
 
-
-
 //Create Varibles for input buttons
 const buttons = document.querySelectorAll('#input .buttons')
 
@@ -42,11 +40,10 @@ butnum = undefined;
 
 
 function timer() {
-    title.textContent = isAvailable
     isAvailable = false;
     setTimeout(() => {
        gameReset(); 
-    }, 3500);
+    }, 2500);
     
 }
 
