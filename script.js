@@ -1,4 +1,4 @@
-let isAvailable = true;
+let isAvailable = true; 
 
 //Create Varibles for input buttons
 const buttons = document.querySelectorAll('#input .buttons')
@@ -17,15 +17,14 @@ function randInt(min,max){
 //Get access to Results Elements
 const resultText = document.querySelector('.results h3');
 
+
 //inputText[0] refers to the top element of text while inputText[1] refers to the bottom element of text
 const inputText = document.querySelectorAll('.results h4')
-
 
 
 //set the title of the game to represent the selections
 const title = document.querySelector('.title h1');
 title.textContent = `${selections[0].toUpperCase()} - ${selections[1].toUpperCase()} - ${selections[2].toUpperCase()}`
-
 
 
 //set text of input buttons to the related text of the selections
@@ -37,9 +36,8 @@ for (button of buttons ){
 butnum = undefined;
 
 
-
-
 function timer() {
+    gameDisable();
     isAvailable = false;
     setTimeout(() => {
        gameReset(); 
@@ -47,10 +45,14 @@ function timer() {
     
 }
 
+
 //disables game and changes look
 function gameDisable() {
-    
+    for (button of buttons){
+        button.disabled = true;
+    }
 }
+
 
 //resets game to defualt state
 function gameReset() {
@@ -59,12 +61,15 @@ function gameReset() {
     resultText.textContent = 'Play Again'
     resultText.removeAttribute('id')
     isAvailable = true;
+
+    for (button of buttons){
+        button.disabled = false;
+    }
 }
 
 
 //allow play when timer is done
 userInput();
-
 
 
 function userInput() {
@@ -118,10 +123,6 @@ function playGame(selection) {
     }    
     
     
-
-
-
-
 //function asks for an array of details
 //[0] wether the game is lost or won
 //[1] users input
@@ -154,6 +155,3 @@ function printResult(details) {
             break;
     }
     }
-
-
-

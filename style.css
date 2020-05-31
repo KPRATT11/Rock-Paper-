@@ -3,7 +3,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
 .title {
     margin: auto;
     text-align: center;
@@ -15,12 +14,10 @@ body {
     font-weight: 200;
 }
 
-
 #input{
     margin: auto;
     text-align: center;
 }
-
 
 #input button{
     color: rgb(17,17,17);
@@ -43,6 +40,10 @@ body {
 #input button:enabled{
     border: none;
     outline: none;
+}
+
+#input button:disabled{
+    background-color: rgb(104, 50, 50);
 }
 
 .results {
